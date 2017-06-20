@@ -30,7 +30,8 @@ def get_features(data, vocab):
     feat_matrix = np.zeros((len(data), len(vocab)))
     for i, instance in enumerate(data):
         for word in instance[0]:
-            feat_matrix[i][vocab[word]] += 1
+            if word in vocab:
+                feat_matrix[i][vocab[word]] += 1
     return feat_matrix
 
 
