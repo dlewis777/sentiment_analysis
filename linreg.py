@@ -15,7 +15,8 @@ if __name__ == "__main__":
     import sys
     TRAIN_FILE = sys.argv[1]
     DEV_FILE = sys.argv[2]
-    train_data = util.read_data(TRAIN_FILE)
+    TRAIN_SIZE = int(sys.argv[3])
+    train_data = util.read_data(TRAIN_FILE)[:TRAIN_SIZE]
     vocab = util.get_vocab(train_data)
     train_feats = util.get_features(train_data, vocab)
     train_labels = util.get_labels(train_data)
