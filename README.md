@@ -1,3 +1,3 @@
 # sentiment_analysis
 
-BLAH
+sentic.net/senticnet-4.0.zip
