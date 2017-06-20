@@ -1,12 +1,12 @@
 import numpy as np
 from scipy.stats import pearsonr
-from sklearn.linear_model import Ridge, RidgeCV
+from sklearn.linear_model import Ridge, RidgeCV, Lasso
 from sklearn.metrics import mean_squared_error as MSE
 import util
 
 
 def train_model(features, labels):
-    model = Ridge()
+    model = RidgeCV()
     model.fit(features, labels)
     return model
 
