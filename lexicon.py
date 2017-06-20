@@ -6,8 +6,15 @@ def read_lexicon(filename):
     with open(filename,'r') as lexicon:
         for line in lexicon:
             ldict[line.split()[0]] = line.split()[2]
-
-    return ldict
+ 
+    sdict = {}
+    with open(filename,'r') as lexicon:
+        for line in lexicon:
+            if line.split()[1] == "positive":
+                sdict[line.split()[0]] = 1
+            else:
+                sdict[line.split()[0]] = 0
+    return ldict, sdict
 
 def read_file(filename):
 
@@ -24,7 +31,7 @@ def get_counts(data, lex):
 
     x = []
     y = []
-    num = 0
+    
     for example in data:
 
         counter = 0.
@@ -39,20 +46,21 @@ def get_counts(data, lex):
         score = score / float(counter)
         print "avg score:" , score , true
         score = round((score * 2) + 3)
+        print score, true
         data[example] = (score,true)
         x.append(score)
         y.append(float(true))
-        num += 1
-        print num
+        
     return x,y
 if __name__ == "__main__":
 
-    lex = read_lexicon(sys.argv[1])
+    lex1, lex2 = read_lexicon(sys.argv[1])
     data = read_file(sys.argv[2])
-    x,y = get_counts(data,lex)
-    
+    x1,y1 = get_counts(data,lex1)
+    x2,y2 = get_counts(data,lex2)
     
     #for example in data:
     #    print data[example]
 
-    print scipy.stats.pearsonr(x,y)
+    print scipy.stats.pearsonr(x2,y2)
+    print scipy.stats.pearsonr(x2,y2)
